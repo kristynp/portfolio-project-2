@@ -6,4 +6,6 @@ require './config/environment'
 
 use Rack::MethodOverride
 use SessionsController
+use PlantsController
+use UsersController
 run ApplicationController
