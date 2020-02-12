@@ -5,11 +5,6 @@ class UsersController < ApplicationController
     redirect '/plants'
   end
 
-  get "/logout" do
-    session.clear
-    redirect "/login"
-  end
-
   get '/signup' do
     if logged_in?
       redirect "/plants"
@@ -20,8 +15,7 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if !params[:username].empty? && !params[:password].empty?
-      @user = User.new(:username => params[:username], :password => params[:password])
-      @user.save
+      @user = User.create(:username => params[:username], :password => params[:password])
       session[:user_id] = @user.id
       redirect to "/plants"
     else
@@ -31,20 +25,36 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    erb :'/users/login'
+    #error message?
+    if logged_in?
+      redirect '/plants'
+    else
+      erb :'users/login'
+    end
   end
 
   post '/login' do
     @user = User.find_by(:username => params[:username])
-    binding.pry
     if !params[:username].empty? && !params[:password].empty? && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect to "/plants"
     else
-      redirect to "/login"
+      redirect to "/signup"
     end
   end
 
+  get "/logout" do
+    session.clear
+    redirect "/login"
+  end
 
+  get '/users/:id' do
+    if logged_in?
+      @user = current_user
+      erb :'/users/show'
+    else
+      redirect '/login'
+    end
+  end
 
 end
