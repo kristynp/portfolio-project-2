@@ -2,7 +2,7 @@ class PlantsController < Sinatra::Base
 
   get '/plants' do
 
-    erb :"/plants/index"
+    erb :'/plants/index'
   end
 
 end

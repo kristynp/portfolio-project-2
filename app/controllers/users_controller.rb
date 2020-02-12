@@ -1,5 +1,15 @@
 class UsersController < ApplicationController
 
+  post '/sessions' do
+
+    redirect '/plants'
+  end
+
+  get "/logout" do
+    session.clear
+    redirect "/login"
+  end
+
   get '/signup' do
     if logged_in?
       redirect "/plants"
@@ -19,5 +29,22 @@ class UsersController < ApplicationController
       redirect to "/signup"
     end
   end
+
+  get '/login' do
+    erb :'/users/login'
+  end
+
+  post '/login' do
+    @user = User.find_by(:username => params[:username])
+    binding.pry
+    if !params[:username].empty? && !params[:password].empty? && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect to "/plants"
+    else
+      redirect to "/login"
+    end
+  end
+
+
 
 end
