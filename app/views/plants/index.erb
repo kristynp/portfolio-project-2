@@ -1,4 +1,4 @@
 <h1>Plant Index</h1>
 <%Plant.all.each do |plant|%>
-  <a href="/plants/<%=plant.id%>"><%=plant.name%></a>
+  <ul><a href="/plants/<%=plant.id%>"><%=plant.name%></a></ul>
 <%end%>
