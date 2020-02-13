@@ -16,9 +16,19 @@ class PlantsController < ApplicationController
     @user = current_user
     if !params[:name].empty? && !params[:sunlight].empty? && !params[:water].empty? && current_user != nil
       @plant = Plant.create(name: params[:name], sunlight: params[:sunlight], water: params[:water])
-      binding.pry
+      @plant.user_id = @user.id
+      @plant.save
     else
-      #binding.pry
+      redirect '/plants/new'
+    end
+  end
+
+  get '/plants/:id' do
+    if logged_in?
+      @plant = Plant.find_by(id: params[:id])
+      erb :'/plants/show'
+    else
+      redirect '/login'
     end
   end
 

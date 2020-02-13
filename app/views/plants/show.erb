@@ -1,0 +1,22 @@
+<h1> <%=@plant.name%> </h1>
+
+<h3> Plant Owner: <%= @plant.user.username%> </h3>
+
+<h3> Preferred Sunlight Level: <%=@plant.sunlight%> </h3>
+
+<h3> Preferred Water Level: <%=@plant.water%> </h3>
+
+<% if @plant.user == current_user %>
+  <form action="/plants/<%=@plant.id%>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <input type="submit" value="Edit Plant">
+  </form>
+
+  <form action="/plants/<%=@plant.id%>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Plant">
+  </form>
+
+  <% else %>
+      <h3> You Must Be Logged in to Edit Plants </h3>
+<% end %>

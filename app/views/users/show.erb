@@ -1,1 +1,7 @@
-User show page
+<h2><%= @user.username%>'s Plants</h2>
+
+<%@user.plants.each do |plant|%>
+  <div>Plant Name: <%= plant.name%><div>
+  <div>Sunlight Level: <%= plant.sunlight%><div>
+  <div>Water Level: <%= plant.water%><div>
+<%end%>
