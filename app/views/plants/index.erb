@@ -1,4 +1,18 @@
 <h1>Plant Index</h1>
+<% if logged_in?%>
+<form action="/plants/new" method="POST">
+  <input type="submit" value="Add New Plant">
+</form>
+<% end %>
+
+
 <%Plant.all.each do |plant|%>
   <ul><a href="/plants/<%=plant.id%>"><%=plant.name%></a></ul>
 <%end%>
+
+
+<% if logged_in?%>
+<form action="/logout" method="POST">
+  <input type="submit" value="Logout">
+</form>
+<% end %>

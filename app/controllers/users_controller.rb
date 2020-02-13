@@ -57,4 +57,8 @@ class UsersController < ApplicationController
     end
   end
 
+  post '/logout' do
+    redirect '/logout'
+  end
+
 end

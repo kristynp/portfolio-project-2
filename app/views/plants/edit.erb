@@ -1,0 +1,30 @@
+<h1> <%=@plant.name%> </h1>
+
+<h3> Plant Owner: <%= @plant.user.username%> </h3>
+
+<h3> Preferred Sunlight Level: <%=@plant.sunlight%> </h3>
+
+<h3> Preferred Water Level: <%=@plant.water%> </h3>
+
+
+
+<% if current_user == @plant.user %>
+
+<form action="/plants/<%=@plant.id%>" method="POST">
+<input id="hidden" type="hidden" name="_method" value="patch">
+  <div>Name: <input type="text" name="name" placeholder="Plant Name" required></div><br>
+
+  <div>Sunlight Level: </div>
+    <div>High <input type="radio" name="sunlight" value="high"></input>
+    Med <input type="radio" name="sunlight"value="medium"></input>
+    Low <input type="radio" name="sunlight"value="low"></input></div><br>
+
+  <div>Water Level: <br>
+    High <input type="radio" name="water" value="high"></input>
+    Med <input type="radio" name="water"value="medium"></input>
+    Low <input type="radio" name="water"value="low"></input></div><br>
+
+  <div><input type="submit" value="Update Plant!"></div>
+</form>
+
+<% end %>
