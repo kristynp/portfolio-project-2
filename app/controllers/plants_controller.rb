@@ -22,7 +22,7 @@ class PlantsController < ApplicationController
       @plant = Plant.create(name: params[:name], sunlight: params[:sunlight], water: params[:water])
       @plant.user_id = @user.id
       @plant.save
-      redirect '/plants'
+      redirect "/plants/#{@plant.id}"
     else
       redirect '/plants/new'
     end

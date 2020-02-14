@@ -1,6 +1,6 @@
-<h1>Plant Pot Index</h1>
-
-<%PlantPot.all.each do |pot|%>
+<h1><%=current_user.username%>'s Plant Pot Index</h1>
+<%current_user.plants.each do |plant|%>
+  <%pot = plant.plant_pot%>
   <ul><a href="/plant_pots/<%=pot.id%>">Pot <%=pot.id%></a></ul>
   <ul>Color: <%=pot.color%></ul>
   <ul>Size: <%=pot.size%></ul>
