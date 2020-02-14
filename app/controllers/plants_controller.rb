@@ -46,7 +46,7 @@ class PlantsController < ApplicationController
   end
 
   get '/plants/:id/edit' do
-    if logged_in?
+    if logged_in? && current_user == @plant.user
       @plant = Plant.find_by(id: params[:id])
       erb :'/plants/edit'
     else
