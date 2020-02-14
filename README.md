@@ -4,7 +4,7 @@
 
 This app allows for organizing plants and their pots. Users can add, edit, and delete any of their plants or plant pots.
 
-## Usage
+## Install
 
 To use this app, clone, run `bundle install`, `rake db:migrate` and then `shotgun`.
 
