@@ -17,7 +17,6 @@ class PlantsController < ApplicationController
   end
 
   post '/plants' do
-    #binding.pry
     @user = current_user
     if !params[:name].empty? && !params[:sunlight].empty? && !params[:water].empty? && current_user != nil
       @plant = Plant.create(name: params[:name], sunlight: params[:sunlight], water: params[:water])
@@ -60,7 +59,6 @@ class PlantsController < ApplicationController
       @plant = Plant.find_by(id: params[:id])
       redirect :"/plants/#{@plant.id}/edit"
     else
-      #error, can't edit plant unless you are the owner
       redirect '/plants'
     end
   end
@@ -84,7 +82,5 @@ class PlantsController < ApplicationController
     end
     redirect "/plants/#{@plant.id}"
   end
-
-
 
 end

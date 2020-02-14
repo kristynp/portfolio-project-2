@@ -8,7 +8,7 @@
 <% if @plant_pot.plant.user == current_user %>
   <h4><a href="/plant_pots/<%=@plant_pot.id%>/edit">Edit Pot</a></h4>
 
-  <h4><a href="/plant_pots/<%=@plant_pot.id%>">Delete Pot</a></h4>
+  <h4><a href="/plant_pots/<%=@plant_pot.id%>/delete">Delete Pot</a></h4>
 
   <% else %>
       <h3> You Must Be Logged in to Edit Plants </h3>

@@ -44,4 +44,31 @@ class PlantPotsController < ApplicationController
     end
   end
 
+  patch '/plant_pots/:id' do
+    @plant_pot = PlantPot.find_by(id: params[:id])
+    if current_user.id == @plant_pot.plant.user_id
+      if !params[:color].empty?
+        @plant_pot.color = params[:color]
+        @plant_pot.save
+      end
+      if !params[:size].empty?
+        @plant_pot.size = params[:size]
+        @plant_pot.save
+      end
+      if !params[:plant_id].empty?
+        @plant_pot.plant_id = params[:plant_id]
+        @plant_pot.save
+      end
+    end
+    redirect "/plant_pots/#{@plant_pot.id}"
+  end
+
+  get '/plant_pots/:id/delete' do
+    @plant_pot = PlantPot.find_by(id: params[:id])
+    if current_user.id == @plant_pot.plant.user_id
+      @plant_pot.delete
+    end
+    redirect '/plant_pots'
+  end
+
 end

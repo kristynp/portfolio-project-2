@@ -19,13 +19,11 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect to "/plants"
     else
-      #error? required fields
       redirect to "/signup"
     end
   end
 
   get '/login' do
-    #error message?
     if logged_in?
       redirect '/plants'
     else
