@@ -11,7 +11,7 @@
 <% if current_user == @plant.user %>
 
 <form action="/plants/<%=@plant.id%>" method="POST">
-<input id="hidden" type="hidden" name="_method" value="patch">
+  <input id="hidden" type="hidden" name="_method" value="patch">
   <div>Name: <input type="text" name="name" placeholder="Plant Name" required></div><br>
 
   <div>Sunlight Level: </div>

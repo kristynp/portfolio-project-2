@@ -1,0 +1,21 @@
+<h2>Pot <%=@plant_pot.id%></h2>
+<ul>Color: <%=@plant_pot.color%></ul>
+<ul>Size: <%=@plant_pot.size%></ul>
+<%if @plant_pot.plant%>
+  <ul>Plant: <%=@plant_pot.plant.name%></ul>
+<%end%>
+
+<% if @plant_pot.plant.user == current_user %>
+  <h4><a href="/plant_pots/<%=@plant_pot.id%>/edit">Edit Pot</a></h4>
+
+  <h4><a href="/plant_pots/<%=@plant_pot.id%>">Delete Pot</a></h4>
+
+  <% else %>
+      <h3> You Must Be Logged in to Edit Plants </h3>
+<% end %>
+
+<% if logged_in?%>
+  <h3><form action="/logout" method="POST">
+    <input type="submit" value="Logout">
+  </form></h3>
+<% end %>

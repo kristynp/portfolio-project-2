@@ -1,9 +1,15 @@
-<h1>Add A New Plant Pot!</h1>
+<h2>Edit Plant Pot <%=@plant_pot.id%></h2>
 
-
+<ul>Color: <%=@plant_pot.color%></ul>
+<ul>Size: <%=@plant_pot.size%></ul>
+<%if @plant_pot.plant%>
+  <ul>Plant: <%=@plant_pot.plant.name%></ul>
+<%end%>
 
 <% if logged_in? %>
-  <form action="/plant_pots" method="POST">
+  <form action="/plant_pots/<%=@plant_pot.id%>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+
     <div>Color: <input type="text" name="color" placeholder="Pot Color" required></div><br>
 
     <div>Size: </div>
@@ -17,7 +23,7 @@
       <%end%><br><br>
 
 
-    <div><input type="submit" value="Create Pot!"></div>
+    <div><input type="submit" value="Edit Pot!"></div>
   </form>
 <% else %>
       <h3> You Must Be Logged in to add a new pot. </h3>
