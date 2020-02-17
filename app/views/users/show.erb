@@ -1,4 +1,6 @@
 <h2><%= @user.username%>'s Plants</h2>
+<%@current_user = current_user%>
+<a href="/plant_pots">View My Pots</a>
 
 <%@user.plants.each do |plant|%>
   <div>Plant Name: <%= plant.name%><div>
