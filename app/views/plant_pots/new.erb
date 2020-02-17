@@ -3,6 +3,7 @@
 
 
 <% if logged_in? %>
+
   <form action="/plant_pots" method="POST">
     <div>Color: <input type="text" name="color" placeholder="Pot Color" required></div><br>
 
@@ -11,14 +12,14 @@
       Medium <input type="radio" name="size" value="medium" required></input>
       Small <input type="radio" name="size" value="small" required></input></div><br>
 
-      <div>Select plant to go in this pot:</div>
+      <div>Select plant to go in this pot</div>
       <%current_user.plants.each do |plant|%>
         <%=plant.name%><input type="radio" name="plant_id" value ="<%=plant.id%>" required>
-      <%end%><br><br>
-
-
+      <%end%><br>
+      Or <a href="/plants/new">create a plant</a><br><br>
     <div><input type="submit" value="Create Pot!"></div>
   </form>
+
 <% else %>
       <h3> You Must Be Logged in to add a new pot. </h3>
 <% end %>
